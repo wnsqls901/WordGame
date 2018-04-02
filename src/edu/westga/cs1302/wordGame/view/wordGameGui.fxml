@@ -12,7 +12,7 @@
       <Button layoutX="32.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleStartANewGame" text="Start a New Game" />
       <TextArea fx:id="textArea" layoutX="194.0" layoutY="33.0" prefHeight="240.0" prefWidth="147.0" />
       <Label fx:id="textScore" layoutX="32.0" layoutY="94.0" text="Score:" />
-      <Label fx:id="textSixLetter" layoutX="32.0" layoutY="134.0" prefHeight="27.0" prefWidth="29.0" />
+      <Label fx:id="textSixLetter" layoutX="32.0" layoutY="134.0" prefHeight="27.0" prefWidth="129.0" />
       <TextField fx:id="textEnterWord" layoutX="32.0" layoutY="185.0" prefHeight="27.0" prefWidth="129.0" />
       <Button layoutX="32.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleShuffle" text="Shuffle" />
       <Button layoutX="110.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleEnter" text="Enter" />
