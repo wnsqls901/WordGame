@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="294.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.wordGame.view.WordGameCodeBehind">
+   <children>
+      <Button layoutX="32.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleStartANewGame" text="Start a New Game" />
+      <TextArea fx:id="textArea" layoutX="194.0" layoutY="33.0" prefHeight="240.0" prefWidth="147.0" />
+      <Label fx:id="textScore" layoutX="32.0" layoutY="94.0" text="Score:" />
+      <Label fx:id="textSixLetter" layoutX="32.0" layoutY="134.0" prefHeight="27.0" prefWidth="29.0" />
+      <TextField fx:id="textEnterWord" layoutX="32.0" layoutY="185.0" prefHeight="27.0" prefWidth="129.0" />
+      <Button layoutX="32.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleShuffle" text="Shuffle" />
+      <Button layoutX="110.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleEnter" text="Enter" />
+   </children>
+</AnchorPane>

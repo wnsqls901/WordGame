@@ -1,18 +1,21 @@
 package edu.westga.cs1302.wordGame;
 	
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
 
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("view/wordGameGui.fxml"));
+			AnchorPane pane = loader.load();
+			Scene scene = new Scene(pane);
+			primaryStage.setTitle("A Word Game by Junbin Kwon");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
