@@ -30,7 +30,7 @@ public class WordGameCodeBehind {
 
     @FXML
     void handleEnter(ActionEvent event) {
-
+    		this.viewModel.Enter();
     }
 
     @FXML

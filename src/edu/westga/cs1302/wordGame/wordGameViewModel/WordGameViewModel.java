@@ -18,12 +18,15 @@ public class WordGameViewModel {
 	
 	private WordGame game;
 	
+	private String output;
+	
 	public WordGameViewModel() {
 		this.sixLetterProperty = new SimpleStringProperty();
 		this.scoreProperty = new SimpleIntegerProperty();
 		this.summaryProperty = new SimpleStringProperty();
 		this.wordProperty = new SimpleStringProperty();
 		this.game = new WordGame();
+		this.output = "";
 	}
 
 	public StringProperty getSixLetterProperty() {
@@ -44,6 +47,14 @@ public class WordGameViewModel {
 
 	public void Shuffle() {
 		this.sixLetterProperty.setValue(this.game.setRandomLetter());
+		
+	}
+
+	public void Enter() {
+		if (this.game.validWord(this.wordProperty.getValue())) {
+			this.output += this.wordProperty.getValue() + System.lineSeparator();
+			this.summaryProperty.setValue(output);
+		}
 		
 	}
 	
