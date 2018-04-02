@@ -51,9 +51,13 @@ public class WordGameViewModel {
 	}
 
 	public void Enter() {
-		if (this.game.validWord(this.wordProperty.getValue())) {
+		if (this.wordProperty.getValue() == null) {
+			this.summaryProperty.getValue();
+		}
+		else if (this.game.validWord(this.wordProperty.getValue())) {
 			this.output += this.wordProperty.getValue() + System.lineSeparator();
 			this.summaryProperty.setValue(output);
+			this.scoreProperty.setValue(this.scoreProperty.getValue()+1);
 		}
 		
 	}
