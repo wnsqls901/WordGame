@@ -1,4 +1,4 @@
-package application;
+package edu.westga.cs1302.wordGame;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
