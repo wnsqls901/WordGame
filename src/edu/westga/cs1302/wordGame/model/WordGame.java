@@ -29,32 +29,35 @@ public class WordGame {
 	}
 	
 	public boolean validWord(String word) {
-
+		
 		if (word.isEmpty() || word == null) {
 			return false;
 		}
-		File file = new File("dictionary.txt");
-		try (Scanner in = new Scanner(file)) {
-			while(in.hasNextLine()) {
-				String currentWord = in.nextLine();
-				if (this.checkContainedWord(currentWord)) {
-					return false;
-				}
-				if (currentWord.length() <= 6 && currentWord.length() >= 3) {
-					if (currentWord.equals(word.toLowerCase())) {
-						if (this.checkSixLetterContainsInWord(word)) {
-							this.validWords.add(currentWord);
-							return true;
-						}
-					}
+		for (String current : this.allValidWords) {
+			if (!this.checkContainedWord(current)) {
+				if (current.equals(word.toLowerCase())) {
+					this.validWords.add(current);
+					return true;
 				}
 			}
-		} catch (FileNotFoundException e) {
-			System.err.println(e.getMessage());
 		}
 		return false;
 	}
-	public String allValidWords() {
+	public double progressValue() {
+		int count = 0;
+		for (String current : this.allValidWords) {
+			for (String currentValid : this.validWords) {
+				if (current.equals(currentValid)) {
+					count++;
+				}
+			}
+		}
+		if (this.allValidWords.size() == 0) {
+			return 1;
+		}
+		return (double) count / (double) this.allValidWords.size();
+	}
+	public String allValidWords(Boolean hint) {
 		this.allValidWords = new ArrayList<String>();
 		String output = "";
 		File file = new File("dictionary.txt");
@@ -72,6 +75,13 @@ public class WordGame {
 		}
 		Collections.sort(this.allValidWords);
 		Collections.sort(this.allValidWords, new WordsComparator());
+		
+		if (hint) {output = this.makeHint(output);}
+		else {output = this.makeUnderScore(output);}
+		return output;
+	}
+	
+	private String makeUnderScore(String output) {
 		for (String current : this.allValidWords) {
 			int count = 0;
 			String underScore = "";
@@ -88,7 +98,31 @@ public class WordGame {
 				output += current + System.lineSeparator();
 			}
 		}
-		
+		return output;
+	}
+	private String makeHint(String output) {
+		for (String current : this.allValidWords) {
+			int count = 0;
+			String underScore = "";
+			char firstLetter;
+			String lastLetters = "";
+			for (String valid : this.validWords) {
+				if (current.equals(valid)) {
+					count++;
+				}
+			}
+			if (count == 0) {
+				firstLetter = current.charAt(0);
+				lastLetters = current.substring(1);
+	 			underScore = lastLetters.replaceAll("[a-zA-Z]", "_");
+				output += firstLetter + underScore + System.lineSeparator();
+			} else {
+
+				output += current + System.lineSeparator();
+			}
+
+			output += current + System.lineSeparator();
+		}
 		return output;
 	}
 	
