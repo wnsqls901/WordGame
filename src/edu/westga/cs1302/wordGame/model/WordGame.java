@@ -120,8 +120,6 @@ public class WordGame {
 
 				output += current + System.lineSeparator();
 			}
-
-			output += current + System.lineSeparator();
 		}
 		return output;
 	}
