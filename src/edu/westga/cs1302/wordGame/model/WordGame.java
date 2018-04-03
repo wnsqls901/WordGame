@@ -48,7 +48,7 @@ public class WordGame {
 	}
 	
 	public boolean validWord(String word) {
-		
+		//System.out.println(this.limitingValidWord(word.toLowerCase()));
 		if (word.isEmpty() || word == null) {
 			return false;
 		}
@@ -56,10 +56,13 @@ public class WordGame {
 			if (!this.checkContainedWord(current)) {
 				if (current.equals(word.toLowerCase())) {
 					this.validWords.add(current);
+
 					return true;
 				}
 			}
 		}
+
+		System.out.println(this.limitingValidWord(word.toLowerCase()));
 		return false;
 	}
 	public double progressValue() {
@@ -83,9 +86,11 @@ public class WordGame {
 		try (Scanner in = new Scanner(file)) {
 			while (in.hasNextLine()) {
 				String currentWord = in.nextLine();
+
 				if (currentWord.length() <= 6 && currentWord.length() >= 3) {
-					if (this.checkSixLetterContainsInWord(currentWord)) {
-						this.allValidWords.add(currentWord);
+					if (this.checkSixLetterContainsInWord(currentWord) && this.limitingValidWord(currentWord)) {
+							this.allValidWords.add(currentWord);	
+	 						System.out.println(this.limitingValidWord(currentWord));
 					}
 				}
 			}
@@ -169,6 +174,36 @@ public class WordGame {
 				return true;
 			}
 		} return false;
+	}
+	
+	private boolean limitingValidWord(String word) {
+		ArrayList<String> sixLetters = new ArrayList<String>();
+		ArrayList<String> wordLetters = new ArrayList<String>();
+		int column;
+		int index;
+		int count = 0;
+		for (column = 0; column < word.length(); column++) {
+			wordLetters.add("" + word.replaceAll(" ", "").toLowerCase().charAt(column));
+		}
+		for (index = 0; index < 6; index++) {
+			sixLetters.add("" + this.sixLetter.replaceAll(" ", "").toLowerCase().charAt(index));
+		}
+		for (column = 0; column < 6; column++) {
+			for (index = 0; index < word.length(); index++) {
+				if (wordLetters.get(index).equalsIgnoreCase(sixLetters.get(column))) {
+					count++;
+					wordLetters.set(index, "*");
+					sixLetters.set(column, "*");
+					break;
+				}
+			}
+		}
+		if (count == word.length()) {
+			//System.out.println(count + "" + word.length() + sixLetters.toString() + wordLetters.toString());
+			return true;
+		}
+		//return  count + "" + word.length() + sixLetters.toString() + wordLetters.toString();
+		return false;
 	}
 
 }
