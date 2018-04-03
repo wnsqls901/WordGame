@@ -30,17 +30,17 @@ public class WordGameCodeBehind {
 
     @FXML
     void handleEnter(ActionEvent event) {
-    		this.viewModel.Enter();
+    		this.viewModel.enter();
     }
 
     @FXML
     void handleShuffle(ActionEvent event) {
-    		this.viewModel.Shuffle();
+    		this.viewModel.shuffle();
     }
 
     @FXML
     void handleStartANewGame(ActionEvent event) {
-
+    		this.viewModel.startNewGame();
     }
 
 	@FXML

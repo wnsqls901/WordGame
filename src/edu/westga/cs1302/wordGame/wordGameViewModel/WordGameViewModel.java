@@ -45,21 +45,33 @@ public class WordGameViewModel {
 		return this.wordProperty;
 	}
 
-	public void Shuffle() {
+	public void shuffle() {
 		this.sixLetterProperty.setValue(this.game.setRandomLetter());
 		
+		this.summaryProperty.setValue(this.game.allValidWords());
 	}
 
-	public void Enter() {
+	public void enter() {
+		
 		if (this.wordProperty.getValue() == null) {
 			this.summaryProperty.getValue();
 		}
 		else if (this.game.validWord(this.wordProperty.getValue())) {
-			this.output += this.wordProperty.getValue() + System.lineSeparator();
-			this.summaryProperty.setValue(output);
-			this.scoreProperty.setValue(this.scoreProperty.getValue()+1);
-		}
-		
+			//this.output += this.wordProperty.getValue() + System.lineSeparator();
+			//this.summaryProperty.setValue(output);
+
+			this.summaryProperty.setValue(this.game.allValidWords());
+			this.scoreProperty.setValue(this.scoreProperty.getValue() + this.wordProperty.getValue().toString().length());
+		}		
+	}
+
+	public void startNewGame() {
+		this.game = new WordGame();
+		this.summaryProperty.setValue("");
+		this.scoreProperty.setValue(0);
+		this.sixLetterProperty.setValue("");
+		this.wordProperty.setValue("");
+		this.output = "";
 	}
 	
 }
