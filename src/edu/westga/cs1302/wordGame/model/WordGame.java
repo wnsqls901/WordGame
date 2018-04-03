@@ -13,6 +13,8 @@ public class WordGame {
 	private String sixLetter;
 	private List<String> validWords;
 	private List<String> allValidWords;
+	private Random rand;
+
 	
 	public WordGame() {
 		this.alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -20,12 +22,29 @@ public class WordGame {
 	}
 	public String setRandomLetter() {
 		this.sixLetter = "";
-		Random rand = new Random();
+		this.rand = new Random();
 		for (int index = 0; index <= 5; index++) {
 			this.sixLetter += this.alphabet.charAt(rand.nextInt(26));
 			this.sixLetter += " ";
 		}
 		return this.sixLetter;
+	}
+	public String shuffle() {
+		char[] letters = new char[6];
+		ArrayList<Integer> shuffleNumber = new ArrayList<Integer>();
+		String trimLetter = this.sixLetter.replaceAll(" ", "");
+		String output = "";
+		for (int count = 0; count < 6; count++) {
+			shuffleNumber.add(count);
+		}
+		for (int index = 0; index < 6; index++) {
+			letters[index] = trimLetter.charAt(index);		
+		}
+		Collections.shuffle(shuffleNumber);
+		for (int number = 0; number < 6; number++) {
+			output += letters[shuffleNumber.indexOf(number)] + " ";
+		}
+		return output;
 	}
 	
 	public boolean validWord(String word) {
@@ -76,8 +95,11 @@ public class WordGame {
 		Collections.sort(this.allValidWords);
 		Collections.sort(this.allValidWords, new WordsComparator());
 		
-		if (hint) {output = this.makeHint(output);}
-		else {output = this.makeUnderScore(output);}
+		if (hint) { 
+			output = this.makeHint(output);
+		} else {
+			output = this.makeUnderScore(output); 
+		}
 		return output;
 	}
 	
@@ -120,6 +142,8 @@ public class WordGame {
 
 				output += current + System.lineSeparator();
 			}
+			//Cheat Sheet
+			output += current + System.lineSeparator(); 
 		}
 		return output;
 	}

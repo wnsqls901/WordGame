@@ -25,7 +25,7 @@ public class WordGameViewModel {
 	private DoubleProperty progressProperty;
 	
 	public BooleanProperty getSelectProperty() {
-		return selectProperty;
+		return this.selectProperty;
 	}
 	public DoubleProperty getProgressProperty() {
 		return this.progressProperty;
@@ -33,7 +33,6 @@ public class WordGameViewModel {
 
 	private WordGame game;
 	
-	private boolean gameOn;
 	
 	public WordGameViewModel() {
 		this.sixLetterProperty = new SimpleStringProperty();
@@ -43,8 +42,12 @@ public class WordGameViewModel {
 		this.selectProperty = new SimpleBooleanProperty();
 		this.selectProperty.setValue(false);
 		this.progressProperty = new SimpleDoubleProperty();
+		this.wordProperty.setValue("");
 		this.game = new WordGame();
-		this.gameOn = false;
+
+		this.sixLetterProperty.setValue(this.game.setRandomLetter());
+		this.summaryProperty.setValue(this.game.allValidWords(this.selectProperty.getValue()));
+		
 	}
 
 	public StringProperty getSixLetterProperty() {
@@ -64,18 +67,12 @@ public class WordGameViewModel {
 	}
 
 	public void shuffle() {
-		this.sixLetterProperty.setValue(this.game.setRandomLetter());
+		this.sixLetterProperty.setValue(this.game.shuffle());
 		this.summaryProperty.setValue(this.game.allValidWords(this.selectProperty.getValue()));
-		this.gameOn = true;
-		this.progressProperty.setValue(this.game.progressValue());
 	}
 
 	public void enter() {
-		
-		if (this.gameOn == false) {
-			this.summaryProperty.getValue();
-		}
-		else if (this.game.validWord(this.wordProperty.getValue())) {
+		if (this.game.validWord(this.wordProperty.getValue())) {
 			this.summaryProperty.setValue(this.game.allValidWords(this.selectProperty.getValue()));
 			this.scoreProperty.setValue(this.scoreProperty.getValue() + this.wordProperty.getValue().toString().length());
 			this.progressProperty.setValue(this.game.progressValue());
@@ -90,15 +87,14 @@ public class WordGameViewModel {
 		this.sixLetterProperty.setValue("");
 		this.wordProperty.setValue("");
 		this.progressProperty.setValue(0);
-		this.gameOn = false;
+
+		this.sixLetterProperty.setValue(this.game.setRandomLetter());
+		this.summaryProperty.setValue(this.game.allValidWords(this.selectProperty.getValue()));
+		
 	}
 
 	public void makeHint() {
-		if (this.gameOn == false) {
-			this.summaryProperty.getValue();
-		} else {
-			this.summaryProperty.setValue(this.game.allValidWords(this.selectProperty.getValue()));
-		}
+		this.summaryProperty.setValue(this.game.allValidWords(this.selectProperty.getValue()));
 	}
 	
 }

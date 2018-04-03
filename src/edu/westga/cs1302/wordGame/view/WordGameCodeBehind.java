@@ -66,7 +66,6 @@ public class WordGameCodeBehind {
 		this.progressBar.progressProperty().bindBidirectional(this.viewModel.getProgressProperty());
 		
 		this.progressBar.setProgress(0);
-		this.textArea.setText("");
 		this.textArea.setEditable(false);
 	}
 
