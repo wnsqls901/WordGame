@@ -8,18 +8,48 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * This class is model class that is actually managing the ways for word game.
+ * 	It is containing method for find the valid word and set random letters etc.
+ * 
+ * @author Junbin Kwon
+ * @version 04-April-2018
+ * 
+ */
 public class WordGame {
+	
+	/** The alphabet. */
 	private String alphabet;
+	
+	/** The six letter. */
 	private String sixLetter;
+	
+	/** The valid words. */
 	private List<String> validWords;
+	
+	/** The all valid words. */
 	private List<String> allValidWords;
+	
+	/** The rand. */
 	private Random rand;
 
 	
+	/**
+	 * Instantiates a new word game.
+	 */
 	public WordGame() {
 		this.alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		this.validWords = new ArrayList<String>();
 	}
+	
+	/**
+	 * Sets the random letter.
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return six random letters
+	 */
 	public String setRandomLetter() {
 		this.sixLetter = "";
 		this.rand = new Random();
@@ -29,6 +59,15 @@ public class WordGame {
 		}
 		return this.sixLetter;
 	}
+	
+	/**
+	 * Shuffle the random letters
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return random letters that are shuffled
+	 */
 	public String shuffle() {
 		char[] letters = new char[6];
 		ArrayList<Integer> shuffleNumber = new ArrayList<Integer>();
@@ -47,6 +86,16 @@ public class WordGame {
 		return output;
 	}
 	
+	/**
+	 * Find the valid word in all valids word list
+	 *
+	 * @param word the enter word
+	 * 
+	 * @precondition word should not be null or empty.
+	 * @postcondition valid word lists add + 1
+	 * 
+	 * @return true, if enter word exists in all valid words list
+	 */
 	public boolean validWord(String word) {
 		//System.out.println(this.limitingValidWord(word.toLowerCase()));
 		if (word.isEmpty() || word == null) {
@@ -66,6 +115,14 @@ public class WordGame {
 		return false;
 	}
 	
+	/**
+	 * Find progress of the word game.
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 *
+	 * @return the value of the progress game.
+	 */
 	public double progressValue() {
 		int count = 0;
 		for (String current : this.allValidWords) {
@@ -81,7 +138,19 @@ public class WordGame {
 		return (double) count / (double) this.allValidWords.size();
 	}
 	
+	/**
+	 * Find all valid words list in the text file that called dictionary.
+	 *
+	 * @precondition hint should not be null
+	 * @postcondition none
+	 *
+	 * @param hint the hint
+	 * @return the string
+	 */
 	public String allValidWords(Boolean hint) {
+		if (hint == null) {
+			throw new IllegalArgumentException("hint should not be null");
+		}
 		this.allValidWords = new ArrayList<String>();
 		String output = "";
 		File file = new File("dictionary.txt");
@@ -110,6 +179,16 @@ public class WordGame {
 		return output;
 	}
 	
+	/**
+	 * Make the words to underscore
+	 *
+	 * @precondition none
+	 * @postcondition none 
+	 * 
+	 * @param output the word
+	 * @return the word to underscore 
+	 * 		if word is valid word, do not need to underscore
+	 */
 	private String makeUnderScore(String output) {
 		for (String current : this.allValidWords) {
 			int count = 0;
@@ -129,6 +208,16 @@ public class WordGame {
 		}
 		return output;
 	}
+	
+	/**
+	 * Make hint.
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @param output the word
+	 * @return make hint
+	 */
 	private String makeHint(String output) {
 		for (String current : this.allValidWords) {
 			int count = 0;
@@ -156,6 +245,15 @@ public class WordGame {
 		return output;
 	}
 	
+	/**
+	 * Check six letter contains in word.
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @param word the word
+	 * @return true, if successful
+	 */
 	private boolean checkSixLetterContainsInWord(String word) {
 		if (this.sixLetter.isEmpty() || this.sixLetter == null) {
 			return false;
@@ -171,6 +269,15 @@ public class WordGame {
 		
 	}
 	
+	/**
+	 * Check contained word.
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @param word the word
+	 * @return true, if successful
+	 */
 	private boolean checkContainedWord(String word) {
 		for (String current : this.validWords) {
 			if (word.toLowerCase().equals(current.toLowerCase())) {
@@ -179,6 +286,15 @@ public class WordGame {
 		} return false;
 	}
 	
+	/**
+	 * Limiting valid word.
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 *
+	 * @param word the word
+	 * @return true, if successful
+	 */
 	private boolean limitingValidWord(String word) {
 		ArrayList<String> sixLetters = new ArrayList<String>();
 		ArrayList<String> wordLetters = new ArrayList<String>();
@@ -202,6 +318,7 @@ public class WordGame {
 			}
 		}
 		if (count == word.length()) {
+			//You can check it specifically.
 			//System.out.println("correct enter word number : " + count + " enter word number : " + word.length() + sixLetters.toString() + wordLetters.toString());
 			return true;
 		}
