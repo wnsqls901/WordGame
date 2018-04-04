@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="294.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.wordGame.view.WordGameCodeBehind">
    <children>
@@ -16,7 +16,10 @@
       <TextField fx:id="textEnterWord" layoutX="32.0" layoutY="209.0" prefHeight="27.0" prefWidth="129.0" />
       <Button layoutX="32.0" layoutY="253.0" mnemonicParsing="false" onAction="#handleShuffle" text="Shuffle" />
       <Button layoutX="110.0" layoutY="253.0" mnemonicParsing="false" onAction="#handleEnter" text="Enter" />
-      <Label fx:id="textSixLetter" layoutX="32.0" layoutY="167.0" prefHeight="27.0" prefWidth="129.0" />
+      <Label fx:id="textSixLetter" contentDisplay="CENTER" layoutX="32.0" layoutY="167.0" prefHeight="27.0" prefWidth="129.0" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font></Label>
       <Label layoutX="32.0" layoutY="96.0" text="Score :" />
       <Label fx:id="textScore" layoutX="96.0" layoutY="96.0" prefHeight="17.0" prefWidth="28.0" />
       <CheckBox fx:id="hintCheckBox" layoutX="33.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleCheckSelection" text="Give me a hint" />

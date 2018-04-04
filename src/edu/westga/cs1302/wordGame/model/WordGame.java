@@ -24,7 +24,7 @@ public class WordGame {
 		this.sixLetter = "";
 		this.rand = new Random();
 		for (int index = 0; index <= 5; index++) {
-			this.sixLetter += this.alphabet.charAt(rand.nextInt(26));
+			this.sixLetter += this.alphabet.charAt(this.rand.nextInt(26));
 			this.sixLetter += " ";
 		}
 		return this.sixLetter;
@@ -62,9 +62,10 @@ public class WordGame {
 			}
 		}
 
-		System.out.println(this.limitingValidWord(word.toLowerCase()));
+		//System.out.println(this.limitingValidWord(word.toLowerCase()));
 		return false;
 	}
+	
 	public double progressValue() {
 		int count = 0;
 		for (String current : this.allValidWords) {
@@ -79,6 +80,7 @@ public class WordGame {
 		}
 		return (double) count / (double) this.allValidWords.size();
 	}
+	
 	public String allValidWords(Boolean hint) {
 		this.allValidWords = new ArrayList<String>();
 		String output = "";
@@ -89,8 +91,8 @@ public class WordGame {
 
 				if (currentWord.length() <= 6 && currentWord.length() >= 3) {
 					if (this.checkSixLetterContainsInWord(currentWord) && this.limitingValidWord(currentWord)) {
-							this.allValidWords.add(currentWord);	
-	 						System.out.println(this.limitingValidWord(currentWord));
+						this.allValidWords.add(currentWord);	
+	 					//System.out.println(this.limitingValidWord(currentWord));
 					}
 				}
 			}
@@ -148,6 +150,7 @@ public class WordGame {
 				output += current + System.lineSeparator();
 			}
 			//Cheat Sheet
+			//You can Check the answer
 			output += current + System.lineSeparator(); 
 		}
 		return output;
@@ -199,7 +202,7 @@ public class WordGame {
 			}
 		}
 		if (count == word.length()) {
-			//System.out.println(count + "" + word.length() + sixLetters.toString() + wordLetters.toString());
+			//System.out.println("correct enter word number : " + count + " enter word number : " + word.length() + sixLetters.toString() + wordLetters.toString());
 			return true;
 		}
 		//return  count + "" + word.length() + sixLetters.toString() + wordLetters.toString();
