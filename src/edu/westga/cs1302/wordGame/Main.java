@@ -7,7 +7,15 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
 
+/**
+ * The Class Main to run the application
+ * 
+ * @author Junbin Kwon
+ * @version 04-04-2018
+ */
 public class Main extends Application {
+	
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -18,11 +26,16 @@ public class Main extends Application {
 			primaryStage.setTitle("A Word Game by Junbin Kwon");
 			primaryStage.setScene(scene);
 			primaryStage.show();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
