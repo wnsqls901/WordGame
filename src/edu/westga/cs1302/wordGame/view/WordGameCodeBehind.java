@@ -50,7 +50,7 @@ public class WordGameCodeBehind {
      * Instantiates a new word game code behind.
      */
     public WordGameCodeBehind() {
-    		this.viewModel = new WordGameViewModel();
+    	this.viewModel = new WordGameViewModel();
     }
 
     /**
@@ -60,7 +60,7 @@ public class WordGameCodeBehind {
      */
     @FXML
     void handleEnter(ActionEvent event) {
-    		this.viewModel.enter();
+    	this.viewModel.enter();
     }
 
     /**
@@ -70,7 +70,7 @@ public class WordGameCodeBehind {
      */
     @FXML
     void handleShuffle(ActionEvent event) {
-    		this.viewModel.shuffle();
+    	this.viewModel.shuffle();
     }
 
     /**
@@ -80,7 +80,7 @@ public class WordGameCodeBehind {
      */
     @FXML
     void handleStartANewGame(ActionEvent event) {
-    		this.viewModel.startNewGame();
+    	this.viewModel.startNewGame();
     }
     
     /**
@@ -90,7 +90,7 @@ public class WordGameCodeBehind {
      */
     @FXML
     void handleCheckSelection(ActionEvent event) {
-    		this.viewModel.makeHint();
+    	this.viewModel.makeHint();
     }
 
 	/**

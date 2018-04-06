@@ -240,7 +240,7 @@ public class WordGame {
 			}
 			//Cheat Sheet
 			//You can Check the answer
-			output += current + System.lineSeparator(); 
+			//output += current + System.lineSeparator(); 
 		}
 		return output;
 	}
